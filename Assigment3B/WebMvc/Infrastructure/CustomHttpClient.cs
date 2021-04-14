@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -18,9 +19,11 @@ namespace WebMvc.Infrastructure
             string authorizationToken = null, 
             string authorizationMethod = "Bearer")
         {
+            //http://localhost:7810/api/EventItems/Items?pageIndex=0&pageSize=5
             var requestMessage = new HttpRequestMessage(HttpMethod.Get, uri);
 
             var response = await _client.SendAsync(requestMessage);
+            Debug.WriteLine("***REQUEST MESSAGE" + requestMessage);
             return await response.Content.ReadAsStringAsync();
 
         }
