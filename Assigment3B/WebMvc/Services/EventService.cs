@@ -18,8 +18,9 @@ namespace WebMvc.Services
 
         public EventService(IConfiguration config, IHttpClient client)
         {
-          //  _baseUrl = $"{config["EventUrl"]}/api/EventItems/";
-            _baseUrl = $"{config["EventUrl"]}/api/Event/";
+        
+            _baseUrl = $"{config["EventUrl"]}/api/EventItems/";
+           // _baseUrl = $"{config["EventUrl"]}/api/Event/";
             _client = client;
         }
         public async Task<IEnumerable<SelectListItem>> GetCategoriesAsync()

@@ -28,7 +28,7 @@ services:
       context: .\WebMvc
       dockerfile: Dockerfile
     environment:
-      EventUrl: http://eventcatalog
+      EventUrl: http://localhost:7810
     ports:
       - "7811:80"
     container_name: webshop

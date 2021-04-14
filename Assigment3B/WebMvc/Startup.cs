@@ -33,46 +33,46 @@ namespace WebMvc
             services.AddControllersWithViews();
             services.AddSingleton<IHttpClient, CustomHttpClient>();
             services.AddTransient<IEventService, EventService>();
-            services.AddTransient<IIdentityService<ApplicationUser>, IdentityService>();
-            var identityUrl = Configuration.GetValue<string>("IdentityUrl");
-            var callBackUrl = Configuration.GetValue<string>("CallBackUrl");
-            services.AddAuthentication(options =>
-            {
-                options.DefaultScheme = "Cookies";
-                options.DefaultChallengeScheme = "oidc";
+            //services.AddTransient<IIdentityService<ApplicationUser>, IdentityService>();
+            //var identityUrl = Configuration.GetValue<string>("IdentityUrl");
+            //var callBackUrl = Configuration.GetValue<string>("CallBackUrl");
+            //services.AddAuthentication(options =>
+            //{
+            //    options.DefaultScheme = "Cookies";
+            //    options.DefaultChallengeScheme = "oidc";
 
-                //options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                //options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
-                //options.DefaultAuthenticateScheme = "Cookies";
-            })
-            .AddCookie("Cookies")
-            .AddOpenIdConnect("oidc", options =>
-            {
-                options.SignInScheme = "Cookies";
-                //options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            //    //options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            //    //options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+            //    //options.DefaultAuthenticateScheme = "Cookies";
+            //})
+            //.AddCookie("Cookies")
+            //.AddOpenIdConnect("oidc", options =>
+            //{
+            //    options.SignInScheme = "Cookies";
+            //    //options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
 
-                options.Authority = identityUrl.ToString();
-                options.SignedOutRedirectUri = callBackUrl.ToString();
-                options.ClientId = "mvc";
-                options.ClientSecret = "secret";
-                options.ResponseType = "code id_token";
-                options.SaveTokens = true;
-                options.GetClaimsFromUserInfoEndpoint = true;
-                options.RequireHttpsMetadata = false;
-                options.Scope.Add("openid");
-                options.Scope.Add("profile");
-                options.Scope.Add("offline_access");
-                options.TokenValidationParameters = new TokenValidationParameters()
-                {
+            //    options.Authority = identityUrl.ToString();
+            //    options.SignedOutRedirectUri = callBackUrl.ToString();
+            //    options.ClientId = "mvc";
+            //    options.ClientSecret = "secret";
+            //    options.ResponseType = "code id_token";
+            //    options.SaveTokens = true;
+            //    options.GetClaimsFromUserInfoEndpoint = true;
+            //    options.RequireHttpsMetadata = false;
+            //    options.Scope.Add("openid");
+            //    options.Scope.Add("profile");
+            //    options.Scope.Add("offline_access");
+            //    options.TokenValidationParameters = new TokenValidationParameters()
+            //    {
 
-                    NameClaimType = "name",
-                    RoleClaimType = "role"
-                };
+            //        NameClaimType = "name",
+            //        RoleClaimType = "role"
+            //    };
 
 
 
-            });
-        }
+            //    });
+            }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -98,7 +98,7 @@ namespace WebMvc
                 {
                     endpoints.MapControllerRoute(
                         name: "default",
-                        pattern: "{controller=Catalog}/{action=Index}/{id?}");
+                        pattern: "{controller=Event}/{action=Index}/{id?}");
                 });
         }
     }
